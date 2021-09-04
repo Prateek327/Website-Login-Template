@@ -27,15 +27,15 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 Login : 
 
-![Login](https://github.com/Prateek327/vue-login-template/blob/master/images/Login.jpg?raw=true)
+![Login](https://github.com/Prateek327/vue-login-template/blob/master/images/Login.PNG?raw=true)
 
 Register :
 
-![Register](https://github.com/Prateek327/vue-login-template/blob/master/images/Register.jpg?raw=true)
+![Register](https://github.com/Prateek327/vue-login-template/blob/master/images/Register.PNG?raw=true)
 
 Navigation :
 
-![Navigation](https://github.com/Prateek327/vue-login-template/blob/master/images/Navigation.jpg?raw=true)
+![Navigation](https://github.com/Prateek327/vue-login-template/blob/master/images/Navigation.PNG?raw=true)
 
 Alert Notifications :
 
@@ -43,4 +43,4 @@ Alert Notifications :
 
 Home Page :
 
-![Home Page](https://github.com/Prateek327/vue-login-template/blob/master/images/HomePage.jpg?raw=true)
+![Home Page](https://github.com/Prateek327/vue-login-template/blob/master/images/HomePage.PNG?raw=true)

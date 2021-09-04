@@ -3,7 +3,7 @@
         <v-col cols="5">
             <v-card>
                 <v-card-title> <div class="theme-color"> Register User </div> </v-card-title>
-                <v-form>
+                <v-form @submit.prevent="registerUser">
                    <v-container>
                       <v-text-field 
                          label="Name" 
@@ -49,10 +49,10 @@
                          filled></v-text-field>   
                       <v-text-field 
                          label="Phone Number" 
-                         v-model="pno"
+                         v-model="phoneNumber"
                          :error-messages="pnoErrors"
-                         @input="$v.pno.$touch()"
-                         @blur="$v.pno.$touch()"
+                         @input="$v.phoneNumber.$touch()"
+                         @blur="$v.phoneNumber.$touch()"
                          required
                          filled></v-text-field>
                       <v-textarea
@@ -70,16 +70,16 @@
                          filled></v-textarea>
                       <v-text-field 
                          label="Pincode" 
-                         v-model="pcode"
+                         v-model="pincode"
                          :error-messages="pcodeErrors"
-                         @input="$v.pcode.$touch()"
-                         @blur="$v.pcode.$touch()"
+                         @input="$v.pincode.$touch()"
+                         @blur="$v.pincode.$touch()"
                          required
                          filled></v-text-field>
                       <v-row>
                           <v-col cols="auto">
-                               <v-btn depressed color="primary">
-                                   Submit
+                               <v-btn type="submit" :loading="status.registering" depressed color="primary">
+                                   Register
                                 </v-btn> 
                            </v-col>
                       </v-row>
@@ -92,9 +92,27 @@
 
 <script>
 import validationMixin from '../mixins/validationMixins'
+import { mapState, mapActions } from 'vuex'
 
 export default {
-  mixins: [validationMixin]
+  mixins: [validationMixin],
+  computed: {
+     ...mapState('account', ['status'])
+  },
+  methods: {
+     ...mapActions('account', ['register']),
+     registerUser(){
+        if (this.passedAllValidations()){
+          this.register(this.$data);
+        }
+     },
+     passedAllValidations(){
+        this.$v.$touch(); 
+        return (!this.nameErrors.length && !this.usernameErrors.length && !this.passwordErrors.length 
+        && !this.repeatPasswordErrors.length && !this.emailErrors.length && !this.pnoErrors.length && !this.addressErrors.length
+        && !this.pcodeErrors.length)
+     }
+  }
 }
 
 </script>

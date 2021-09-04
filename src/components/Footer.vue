@@ -3,7 +3,7 @@
       <v-col
         class="text-center"
         cols="12">
-        {{ new Date().getFullYear() }} — <strong> {{ this.$store.state.companyName }} </strong>
+        {{ new Date().getFullYear() }} — <strong> {{ this.$store.state.companyName }} | Prateek Khandelwal </strong>
       </v-col>
     </v-footer>
 </template>

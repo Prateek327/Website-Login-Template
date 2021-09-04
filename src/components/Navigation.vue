@@ -46,13 +46,13 @@
             </v-list-item>
   
             <v-list-item>
-              <v-icon left>mdi-tshirt-crew</v-icon>
-              <v-list-item-title>Categories</v-list-item-title>
+              <v-icon left>mdi-human-greeting</v-icon>
+              <v-list-item-title>Action 1</v-list-item-title>
             </v-list-item>
   
             <v-list-item>
-               <v-icon left>mdi-human-greeting</v-icon>
-              <v-list-item-title>Become a seller</v-list-item-title>
+               <v-icon left>mdi-share</v-icon>
+              <v-list-item-title>Action 2</v-list-item-title>
             </v-list-item>
   
             <v-list-item>

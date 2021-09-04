@@ -3,14 +3,14 @@
         <v-col cols="auto">
             <v-card>
                 <v-card-title> <div class="theme-color"> Login </div> </v-card-title>
-                <v-form>
+                <v-form @submit.prevent="loginUser">
                    <v-container>
                       <v-text-field 
-                         label="Username" 
-                         v-model="username"
-                         :error-messages="usernameErrors"
-                         @input="$v.username.$touch()"
-                         @blur="$v.username.$touch()"
+                         label="Username or E-mail" 
+                         v-model="userIdentity"
+                         :error-messages="userIdentityErrors"
+                         @input="$v.userIdentity.$touch()"
+                         @blur="$v.userIdentity.$touch()"
                          filled
                          required></v-text-field>
                       <v-text-field
@@ -24,7 +24,7 @@
                          required></v-text-field>
                       <v-row>
                           <v-col cols="auto">
-                               <v-btn depressed color="primary">
+                               <v-btn type="submit" :loading="status.loggingIn" depressed color="primary">
                                    Submit
                                 </v-btn> 
                            </v-col>
@@ -42,10 +42,30 @@
 </template>
 
 <script>
+
 import validationMixin from '../mixins/validationMixins'
+import { mapState, mapActions } from 'vuex'
+
+
 export default {
-  mixins: [validationMixin]
-}
+  mixins: [validationMixin],
+  computed: {
+      ...mapState('account', ['status'])
+  },
+  methods: {
+      ...mapActions('account', ['login']),
+      loginUser (){
+          const { userIdentity, password} = this;
+          if (this.passedAllValidations()){
+              this.login({ userIdentity, password });
+          }
+      },
+      passedAllValidations(){
+          this.$v.$touch(); 
+          return (!this.userIdentityErrors.length && !this.passwordErrors.length);
+      }
+  }
+};
 
 </script>
 

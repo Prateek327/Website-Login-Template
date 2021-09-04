@@ -18,6 +18,13 @@ export default {
             !this.$v.username.required && errors.push('Username is required.')
             return errors
           },
+          userIdentityErrors () {
+            const errors = []
+            if (!this.$v.userIdentity.$dirty) return errors
+            !this.$v.userIdentity.minLength && errors.push('Username/Email must be at least 5 characters long')
+            !this.$v.userIdentity.required && errors.push('Username/Email is required.')
+            return errors
+          },
           passwordErrors () {
             const errors = []
             if (!this.$v.password.$dirty) return errors
@@ -40,11 +47,11 @@ export default {
           },
           pnoErrors () {
             const errors = []
-            if (!this.$v.pno.$dirty) return errors
-            !this.$v.pno.required && errors.push('Phone number is required')
-            !this.$v.pno.numeric && errors.push('Phone number should be numeric')
-            !this.$v.pno.maxLength && errors.push('Phone number should be 10 digits')
-            !this.$v.pno.minLength && errors.push('Phone number should be 10 digits')
+            if (!this.$v.phoneNumber.$dirty) return errors
+            !this.$v.phoneNumber.required && errors.push('Phone number is required')
+            !this.$v.phoneNumber.numeric && errors.push('Phone number should be numeric')
+            !this.$v.phoneNumber.maxLength && errors.push('Phone number should be 10 digits')
+            !this.$v.phoneNumber.minLength && errors.push('Phone number should be 10 digits')
             return errors
           },
           addressErrors () {
@@ -56,9 +63,9 @@ export default {
           },
           pcodeErrors () {
             const errors = []
-            if (!this.$v.pcode.$dirty) return errors
-            !this.$v.pcode.required && errors.push('Pincode is required')
-            !this.$v.pcode.numeric && errors.push('Pincode should be numeric')
+            if (!this.$v.pincode.$dirty) return errors
+            !this.$v.pincode.required && errors.push('Pincode is required')
+            !this.$v.pincode.numeric && errors.push('Pincode should be numeric')
             return errors
           },
     },
@@ -66,12 +73,13 @@ export default {
     validations: {
         name: {required, maxLength: maxLength(20), minLength: minLength(4),},
         username: { required, maxLength: maxLength(15), minLength: minLength(5) },
+        userIdentity: { required, minLength: minLength(5)},
         password: { required, minLength: minLength(5)},
         rPassword: { required, minLength: minLength(5), sameAsPassword: sameAs('password')},
         email: { required, email},
-        pno: {required, numeric},
+        phoneNumber: {required, numeric, maxLength: maxLength(10), minLength: minLength(10)},
         address: {required, maxLength: maxLength(60)},
-        pcode: {required, numeric}
+        pincode: {required, numeric}
     },
     
     data: () => ({
@@ -80,8 +88,9 @@ export default {
       password: '',
       rPassword: '',
       email: '',
-      pno: '',
+      phoneNumber: '',
       address: '',
-      pcode: ''
+      pincode: '',
+      userIdentity :''
     })
 };

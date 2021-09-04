@@ -1,4 +1,4 @@
-# canny
+# New Website
 
 ## Project setup
 ```
